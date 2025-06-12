@@ -45,5 +45,19 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access to scan barcodes</string>
+
+	<!-- Camera permission -->
+    <key>NSCameraUsageDescription</key>
+    <string>Need camera access to scan barcodes</string>
+    
+    <!-- For iOS 14+ photo library access (if needed) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Need photo library access to save images</string>
+    
+    <!-- For iOS 10+ microphone access (if needed) -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Need microphone access for video recording</string>
 </dict>
 </plist>

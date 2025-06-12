@@ -1,13 +1,12 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.example.evn3"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = flutter.compileSdkVersion.toInt()
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -20,25 +19,36 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.evn3"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
+        minSdk = flutter.minSdkVersion.toInt()
+        targetSdk = flutter.targetSdkVersion.toInt()
+        versionCode = flutter.versionCode.toInt()
         versionName = flutter.versionName
+
+        // Add NDK configuration for flutter_barcode_sdk
+        ndk {
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+        }
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            // Enable code shrinking and obfuscation
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Add any additional dependencies if needed
+    implementation("androidx.core:core-ktx:1.12.0")
 }

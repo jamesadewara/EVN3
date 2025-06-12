@@ -24,7 +24,7 @@ EVN3 is a cross-platform inventory management application built with Flutter, de
 
 ### APIs & Packages
 
-* **`mobile_scanner`:** For robust and efficient barcode/QR code scanning using the device camera. (Or `barcode_scan2` if `mobile_scanner` presents issues with specific platforms).
+* **`flutter_barcode_sdk`:** For robust and efficient barcode/QR code scanning using the device camera for desktop platform such as linux and windows, while `mobile_scanner` for mobile and web platforms.
 * **`path_provider`:** To get platform-specific paths for storing the local database.
 * **`csv`:** For easily generating CSV formatted data for export.
 * **`share_plus`:** For sharing the exported CSV file via native sharing sheets.
@@ -81,9 +81,9 @@ For a project of this scope and complexity, aiming for simplicity and learnabili
 
 Given the requirement for local data persistence and structured data, a relational database is ideal.
 
-* **`sqflite` (SQLite database):**
+* **`sqflite_common_ffi` (SQLite database):**
     * **Benefits:** Well-established, robust, and provides a structured way to store and query data. It's suitable for complex data relationships and provides full CRUD (Create, Read, Update, Delete) capabilities. Excellent for learning database concepts within Flutter.
-    * **Alternative (for simpler, key-value storage):** `Hive`. Faster for very simple data but might be less ideal for complex queries or relationships needed for transactions and product lookups. `sqflite` offers a more comprehensive learning experience for structured data.
+    * **Alternative (for simpler, key-value storage):** `Hive`. Faster for very simple data but might be less ideal for complex queries or relationships needed for transactions and product lookups. `sqflite_common_ffi` offers a more comprehensive learning experience for structured data.
 
 ---
 
@@ -94,7 +94,7 @@ For development and demonstration purposes, EVN3 utilizes **Mockaroo** as its pr
 **How Mockaroo is Integrated:**
 
 * **Data Generation:** Mockaroo is used to generate large datasets for `Product`, `InventoryItem`, and `Transaction` models in JSON or CSV format. These files define the initial state of the inventory and a history of transactions.
-* **Initial Data Seeding:** The generated JSON/CSV files are placed in the app's `assets/data/` directory. On the first launch (or via a "Seed Demo Data" option in settings), the app reads and parses these files, then populates the local `sqflite` database. This ensures a consistent and realistic starting point for the demo.
+* **Initial Data Seeding:** The generated JSON/CSV files are placed in the app's `assets/data/` directory. On the first launch (or via a "Seed Demo Data" option in settings), the app reads and parses these files, then populates the local `sqflite_common_ffi` database. This ensures a consistent and realistic starting point for the demo.
 * **Backend Simulation (Conceptual):** While the app primarily uses local storage, Mockaroo's ability to create mock API endpoints provides a conceptual "backend" for future scalability. This approach allows for testing data fetching mechanisms and simulating network delays, even without a live server. For the current simple version, the focus remains on local data persistence with realistic data.
 * **"Real-Time" Simulation:** Dynamic inventory changes for demonstration are handled client-side. The app includes a "Demo Mode" that programmatically generates new `Transaction` entries and updates `InventoryItem` quantities at random intervals, simulating live activity on the dashboard and transaction log.
 
@@ -255,7 +255,7 @@ The splash screen provides a brief visual introduction to the app while essentia
     * Project name (EVN3) or a simple loading indicator.
     * **Consider a subtle animation for the logo or text using `flutter_animate` to make the splash screen more engaging.**
     * Perform asynchronous tasks:
-        * Initialize the local database (`sqflite`).
+        * Initialize the local database (`sqflite_common_ffi`).
         * Check if data needs to be seeded (e.g., on first run).
         * Load initial data from `assets/data/` if seeding is required.
     * Navigate to the `DashboardPage` after tasks are complete.
@@ -286,7 +286,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
 
     // TODO:
-    // 1. Initialize your local database (sqflite)
+    // 1. Initialize your local database (sqflite_common_ffi)
     // 2. Check if data needs to be seeded (e.g., using SharedPreferences for a flag)
     // 3. If seeding, load data from assets/data/products.json, etc., and insert into DB.
 

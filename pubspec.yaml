@@ -34,6 +34,29 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Database
+  sqflite_common_ffi: ^2.3.0
+  path_provider: ^2.1.2
+
+  # Barcode Scanning
+  flutter_barcode_sdk: ^3.1.1
+  mobile_scanner: ^3.0.0
+
+  # Data Export
+  csv: ^5.1.1
+  share_plus: ^7.2.2
+
+  # UI & Styling
+  google_fonts: ^6.1.0
+  flutter_animate: ^4.5.0
+  flutter_launcher_icons: ^0.13.1
+  http: ^1.4.0
+  permission_handler: ^12.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +68,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.8
+  riverpod_generator: ^2.3.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,3 +112,22 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png" # Path to your square icon image (e.g., 512x512px)
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true # Optional: remove transparency from iOS icon
+  web:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+    background_color: "#ffffff" # Optional: background color for web icon
+    theme_color: "#ffffff" # Optional: theme color for web icon
+  windows:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+    icon_size: 48 # Optional: icon size for windows (must be 48 or 256)
+  macos:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
